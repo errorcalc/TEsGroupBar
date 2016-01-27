@@ -1,8 +1,9 @@
 # TEsGroupBar
 
+![Logo](Logo.png)
+
 RUS/ENG
 
-====================================
 [ENG]
 ====================================
 TEsGroupBar - This sidebar is similar to the panel conductor XP, and allows the installation of any skin, In addition there is a support mode when one of the items selected.
@@ -12,7 +13,6 @@ After purchasing a license, you also get a year of free updates and technical su
 
 Can manufacturing of custom styles for you.
 
-====================================
 [RUS]
 ====================================
 TEsGroupBar - Это боковая панель, подобная панели проводника в XP, позволяющая установку любого скина.
