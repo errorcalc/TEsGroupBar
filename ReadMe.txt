@@ -1,5 +1,9 @@
 *** ErrorSoft(c) 2015-2016 ***
 
+License: 
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
+You can purchase a license for commercial use.
+
 ENG/RUS
 
 ====================================

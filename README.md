@@ -2,6 +2,11 @@
 
 ![Logo](Logo.png)
 
+
+License: 
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
+You can purchase a license for commercial use.
+
 RUS/ENG
 
 [ENG]
