@@ -11,7 +11,8 @@ You can purchase a license for commercial use.
 RUS/ENG
 
 *** You can help, if you send me where you are using the component and attach a screenshot example of use ***
-*** Вы можете помочь, если вы пришлете мне, где вы используете компонент и приложите скриншот с примером использования ***
+
+*** Вы можете помочь, если вы напишете мне, где вы используете компонент и приложите скриншот с примером использования ***
 
 [ENG]
 ====================================
