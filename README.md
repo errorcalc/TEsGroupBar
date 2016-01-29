@@ -2,6 +2,7 @@
 
 ![Logo](Logo.png)
 
+Support Delphi 2010 - Delphi Seattle (DX10)
 
 License: 
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.

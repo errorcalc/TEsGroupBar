@@ -2,6 +2,8 @@
 {                            ErrorSoft(c) 2015-2016                            }
 {                                                                              }
 {             TEsGroupBar - the best skinnable groupbar for vcl                }
+{                                  Version 1.0                                 }
+{                                                                              }
 {                        Free for noncommercial use                            }
 {   You can purchase this, write on errorsoft@mail.ru or Enter256@yandex.ru    }
 {             This on GitHub: https://github.com/errorcalc/TEsGroupBar         }

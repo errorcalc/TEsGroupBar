@@ -19,17 +19,40 @@ unit uMain;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ImgList, StdCtrls, ActnList, ES.Vcl.BaseControls, Es.Vcl.GroupBar, ImageList,
-  Actions, ComCtrls, ToolWin, ExtCtrls;
+{$ifndef VER210}
+  {$ifndef VER220}
+    {$ifndef VER230}
+      {$define VER_XE3_UP}
+    {$endif}
+  {$endif}
+{$endif}
+
+{$ifdef VER_XE3_UP}
+  {$ifndef VER240}
+    {$ifndef VER250}
+      {$ifndef VER260}
+        {$ifndef VER270}
+          {$ifndef VER280}
+            {$define VER_XE8_UP}
+          {$endif}
+        {$endif}
+      {$endif}
+    {$endif}
+  {$endif}
+{$endif}
 
 {$if CompilerVersion >= 30}
 {$define Win10Styles}
-{$endif}
+{$ifend}
 {$if CompilerVersion >= 23}
 {$define SupportStyles}
-{$endif}
+{$ifend}
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ImgList, StdCtrls, ActnList, ES.Vcl.BaseControls, Es.Vcl.GroupBar
+  {$ifdef VER_XE8_UP},System.ImageList{$endif} {$ifdef VER_XE3_UP},System.Actions{$endif}
+  , ExtCtrls, ToolWin, ComCtrls;
 
 type
   TMainForm = class(TForm)
@@ -103,7 +126,8 @@ implementation
 
 {$ifdef SupportStyles}
 uses
-  Themes;
+  Vcl.Themes,
+  Vcl.Styles;
 {$endif}
 
 procedure TMainForm.Action1Execute(Sender: TObject);
@@ -225,11 +249,11 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   {$if CompilerVersion >= 29}
   ImageList1.GrayscaleFactor := 255;
-  {$endif}
+  {$ifend}
   {$ifndef Win10Styles}
-  EsGroup3.Items[2].Caption := 'Light*';
-  EsGroup3.Items[3].Caption := 'Metropolis UI Dark*';
-  EsGroup3.Items[4].Caption := 'Metropolis UI Blue*';
+  grSelectStyle.Items[2].Caption := 'Light*';
+  grSelectStyle.Items[3].Caption := 'Metropolis UI Dark*';
+  grSelectStyle.Items[4].Caption := 'Metropolis UI Blue*';
   StaticText1.Visible := True;
   {$endif}
 
@@ -259,22 +283,22 @@ begin
     end;
     1:
     begin
-      {$ifdef SupportStyles}TStyleManager.SetStyle('Ruby Graphite');{$endif}
+      {$ifdef SupportStyles}TStyleManager.TrySetStyle('Ruby Graphite');{$endif}
       EsGroupBar1.GroupStyle.LoadStyleFromResource(hInstance, 'RubyGraphiteStyle', RT_RCDATA);
     end;
     2:
     begin
-      {$ifdef SupportStyles}TStyleManager.SetStyle({$ifdef Win10Styles}'Windows10'{$else}'Light'{$endif});{$endif}
+      {$ifdef SupportStyles}TStyleManager.TrySetStyle({$ifdef Win10Styles}'Windows10'{$else}'Light'{$endif});{$endif}
       EsGroupBar1.GroupStyle.LoadStyleFromResource(hInstance, 'Modern', RT_RCDATA);
     end;
     3:
     begin
-      {$ifdef SupportStyles}TStyleManager.SetStyle({$ifdef Win10Styles}'Windows10 Dark'{$else}'Metropolis UI Dark'{$endif});{$endif}
+      {$ifdef SupportStyles}TStyleManager.TrySetStyle({$ifdef Win10Styles}'Windows10 Dark'{$else}'Metropolis UI Dark'{$endif});{$endif}
       EsGroupBar1.GroupStyle.LoadStyleFromResource(hInstance, 'ModernDark', RT_RCDATA);
     end;
     4:
     begin
-      {$ifdef SupportStyles}TStyleManager.SetStyle({$ifdef Win10Styles}'Windows10 Blue'{$else}'Metropolis UI Blue'{$endif});{$endif}
+      {$ifdef SupportStyles}TStyleManager.TrySetStyle({$ifdef Win10Styles}'Windows10 Blue'{$else}'Metropolis UI Blue'{$endif});{$endif}
       EsGroupBar1.GroupStyle.LoadStyleFromResource(hInstance, 'ModernBlue', RT_RCDATA);
     end;
   end;

@@ -5,8 +5,7 @@ program TEsGroupBarDemo;
 uses
   Forms,
   uMain in 'uMain.pas' {MainForm},
-  Vcl.Themes,
-  Vcl.Styles;
+  Es.Vcl.GroupBar in '..\Source\Es.Vcl.GroupBar.pas';
 
 {$R *.res}
 

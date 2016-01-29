@@ -2,6 +2,8 @@
 {                            ErrorSoft(c) 2015-2016                            }
 {                                                                              }
 {             TEsGroupBar - the best skinnable groupbar for vcl                }
+{                                  Version 1.0                                 }
+{                                                                              }
 {                        Free for noncommercial use                            }
 {   You can purchase this, write on errorsoft@mail.ru or Enter256@yandex.ru    }
 {             This on GitHub: https://github.com/errorcalc/TEsGroupBar         }
@@ -21,8 +23,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Generics.Collections,
-   Es.Vcl.BaseControls, Es.Vcl.CfxClasses, Es.Vcl.ExGraphics, PngImage, Dialogs, ImgList, ActnList
-   {$if CompilerVersion >= 23}, UITypes{$ifend};
+  Es.Vcl.BaseControls, Es.Vcl.CfxClasses, Es.Vcl.ExGraphics, PngImage, Dialogs, ImgList, ActnList
+  {$if CompilerVersion >= 23}, UITypes{$ifend};
 
 type
   // Button style
@@ -41,9 +43,9 @@ type
     function IsStyleStored: Boolean;
   protected
     function GetStateCount: Integer; override;
-    procedure AssignDefaultValues; override;
     function GetStylePrefix: string; override;
   public
+    procedure AssignDefaultValues; override;
     procedure Draw(Canvas: TCanvas; Rect: TRect; State: TEsGroupButtonState; Alpha: Byte = 255); reintroduce;
     property OnChange;
   published
@@ -74,11 +76,11 @@ type
     procedure SetShowHotSelector(const Value: Boolean);
   protected
     function GetStateCount: Integer; override;
-    procedure AssignDefaultValues; override;
     function GetStylePrefix: string; override;
   public
     constructor Create; override;
     destructor Destroy; override;
+    procedure AssignDefaultValues; override;
     procedure Draw(Canvas: TCanvas; Rect: TRect; State: TEsGroupSelectState; Alpha: Byte = 255); reintroduce;
     property OnChange;
   published
@@ -103,10 +105,10 @@ type
     function IsStyleStored: Boolean;
   protected
     function GetStateCount: Integer; override;
-    procedure AssignDefaultValues; override;
     function GetStylePrefix: string; override;
   public
     procedure Draw(Canvas: TCanvas; Rect: TRect; State: TEsItemSeparatorState; Alpha: Byte = 255); reintroduce;
+    procedure AssignDefaultValues; override;
     property OnChange;
   published
     property ImageNormal: TPngImage index issNormal read GetImage write SetImage;
@@ -127,10 +129,10 @@ type
     procedure SetOverlay(const Index: Integer; const Value: TPngImage);
   protected
     function GetStateCount: Integer; override;
-    procedure AssignDefaultValues; override;
     function GetStylePrefix: string; override;
   public
     procedure Draw(Canvas: TCanvas; Rect: TRect; State: TEsGroupBackgroundState; Alpha: Byte = 255); reintroduce;
+    procedure AssignDefaultValues; override;
     property OnChange;
   published
     property ImageNormal: TPngImage index gbsNormal read GetImage write SetImage;
@@ -149,6 +151,7 @@ type
   private
     FControl: TControl;
     FOnChange: TChangeOptionsEvent;
+    IsUpdateStyle: Boolean;
     //
     FButtonStyle: TEsGroupButtonStyle;
     FItemHotColor: TColor;
@@ -455,7 +458,7 @@ type
     function IsSelected: Boolean;
     procedure Open;
     procedure Close;
-    procedure View;
+    procedure View(ItemIndex: Integer = -1);
     //
     property GroupBar: TEsGroupBar read FGroupBar write SetGroupBar;
   published
@@ -523,7 +526,7 @@ type
     {$if CompilerVersion >= 23}
     class constructor Create;
     class destructor Destroy;
-    {$endif}
+    {$ifend}
     //
     procedure WMVScroll(var Message: TWMVScroll); message WM_VSCROLL;
     procedure WMNCHitTest(var Message: TWMNCHitTest); message WM_NCHITTEST;
@@ -625,7 +628,7 @@ type
     property Touch;
     {$if CompilerVersion >= 24}
     property StyleElements;
-    {$endif}
+    {$ifend}
     //
     property OnMouseActivate;
     property OnMouseDown;
@@ -652,10 +655,10 @@ implementation
 
 
 uses
-  Es.Vcl.Utils,
+  Es.Vcl.Utils
 {$if CompilerVersion >= 23}
-  Themes
-{$endif}
+  ,Themes
+{$ifend}
 ;
 { TEsGroupBar }
 
@@ -706,7 +709,7 @@ class constructor TEsGroupBar.Create;
 begin
   TCustomStyleEngine.RegisterStyleHook(TEsGroupBar, TScrollBoxStyleHook);
 end;
-{$endif}
+{$ifend}
 
 procedure TEsGroupBar.CreateParams(var Params: TCreateParams);
 begin
@@ -726,7 +729,7 @@ class destructor TEsGroupBar.Destroy;
 begin
   TCustomStyleEngine.UnRegisterStyleHook(TEsGroupBar, TScrollBoxStyleHook);
 end;
-{$endif}
+{$ifend}
 
 destructor TEsGroupBar.Destroy;
 var
@@ -1736,7 +1739,7 @@ begin
 
       FItemIndex := NewIndex;
 
-      View;
+      View(FItemIndex);
     finally
       IsChanging := False;
     end;
@@ -1776,9 +1779,9 @@ begin
   Invalidate;
 end;
 
-procedure TEsGroup.View;
+procedure TEsGroup.View(ItemIndex: Integer = -1);
 begin
-  if (FItemIndex <> -1) and (GroupBar <> nil) and (GroupBar.UniqueItemSelection) and not(csDesigning in ComponentState) then
+  if {(FItemIndex <> -1) and} (GroupBar <> nil) {and (GroupBar.UniqueItemSelection)} and not(csDesigning in ComponentState) then
   begin
     Open;
     if (Top < 0) or (Top + Height > GroupBar.Height) then
@@ -1787,8 +1790,9 @@ begin
       else
       begin
         GroupBar.ScrollToGroup(Self);
-        GroupBar.VertScrollBar.Position := GroupBar.VertScrollBar.Position -
-          GroupBar.Height div 2 + ItemRect(FItemIndex).Top + (ItemRect(FItemIndex).Bottom - ItemRect(FItemIndex).Top) div 2;
+        if (ItemIndex >= 0) and (ItemIndex < Items.Count) then
+          GroupBar.VertScrollBar.Position := GroupBar.VertScrollBar.Position -
+            GroupBar.Height div 2 + ItemRect(ItemIndex).Top + (ItemRect(ItemIndex).Bottom - ItemRect(ItemIndex).Top) div 2;
       end;
   end;
 end;
@@ -2119,24 +2123,43 @@ begin
   FSelectStyle.AssignDefaultStyle;
   FButtonStyle.AssignDefaultStyle;
   AssignDefaultProperties;
+  Change(True);
 end;
 
 procedure TEsGroupStyle.LoadStyleFormFile(FileName: string);
 begin
-  AssignDefaultStyle;
-  DeserializeFromFile(Self, FileName, 'GroupBarStyle');
+  IsUpdateStyle := True;
+  try
+    AssignDefaultStyle;
+    DeserializeFromFile(Self, FileName, 'GroupBarStyle');
+  finally
+    IsUpdateStyle := False;
+  end;
+  Change(True);
 end;
 
 procedure TEsGroupStyle.LoadStyleFormStream(Stream: TStream);
 begin
-  AssignDefaultStyle;
-  DeserializeFromStream(Self, Stream, 'GroupBarStyle');
+  IsUpdateStyle := True;
+  try
+    AssignDefaultStyle;
+    DeserializeFromStream(Self, Stream, 'GroupBarStyle');
+  finally
+    IsUpdateStyle := False;
+  end;
+  Change(True);
 end;
 
 procedure TEsGroupStyle.LoadStyleFromResource(Instance: HINST; const ResourceName: string; ResourceType: PChar);
 begin
-  AssignDefaultStyle;
-  DeserializeFromResource(Self, Instance, ResourceName, ResourceType, 'GroupBarStyle');
+  IsUpdateStyle := True;
+  try
+    AssignDefaultStyle;
+    DeserializeFromResource(Self, Instance, ResourceName, ResourceType, 'GroupBarStyle');
+  finally
+    IsUpdateStyle := False;
+  end;
+  Change(True);
 end;
 
 procedure TEsGroupStyle.RebildChange(Sender: TObject);
@@ -2429,7 +2452,7 @@ end;
 
 procedure TEsGroupStyle.Change(Rebild: Boolean);
 begin
-  if Assigned(FOnChange) then
+  if Assigned(FOnChange) and (not IsUpdateStyle) then
     FOnChange(Self, Rebild);
 end;
 

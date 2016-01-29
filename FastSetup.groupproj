@@ -1,60 +1,60 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <ProjectGuid>{5C3EA6B8-3850-439B-A7CA-E12921CA7B4F}</ProjectGuid>
-    </PropertyGroup>
-    <ItemGroup>
-        <Projects Include="EsVclCore\EsVclCore.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="EsGroupBar.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Demo\TEsGroupBarDemo.dproj">
-            <Dependencies/>
-        </Projects>
-    </ItemGroup>
-    <ProjectExtensions>
-        <Borland.Personality>Default.Personality.12</Borland.Personality>
-        <Borland.ProjectType/>
-        <BorlandProject>
-            <Default.Personality/>
-        </BorlandProject>
-    </ProjectExtensions>
-    <Target Name="EsVclCore">
-        <MSBuild Projects="EsVclCore\EsVclCore.dproj"/>
-    </Target>
-    <Target Name="EsVclCore:Clean">
-        <MSBuild Projects="EsVclCore\EsVclCore.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="EsVclCore:Make">
-        <MSBuild Projects="EsVclCore\EsVclCore.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="EsGroupBar">
-        <MSBuild Projects="EsGroupBar.dproj"/>
-    </Target>
-    <Target Name="EsGroupBar:Clean">
-        <MSBuild Projects="EsGroupBar.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="EsGroupBar:Make">
-        <MSBuild Projects="EsGroupBar.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="TEsGroupBarDemo">
-        <MSBuild Projects="Demo\TEsGroupBarDemo.dproj"/>
-    </Target>
-    <Target Name="TEsGroupBarDemo:Clean">
-        <MSBuild Projects="Demo\TEsGroupBarDemo.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="TEsGroupBarDemo:Make">
-        <MSBuild Projects="Demo\TEsGroupBarDemo.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="Build">
-        <CallTarget Targets="EsVclCore;EsGroupBar;TEsGroupBarDemo"/>
-    </Target>
-    <Target Name="Clean">
-        <CallTarget Targets="EsVclCore:Clean;EsGroupBar:Clean;TEsGroupBarDemo:Clean"/>
-    </Target>
-    <Target Name="Make">
-        <CallTarget Targets="EsVclCore:Make;EsGroupBar:Make;TEsGroupBarDemo:Make"/>
-    </Target>
-    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
-</Project>
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{5C3EA6B8-3850-439B-A7CA-E12921CA7B4F}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="EsVclCore\EsVclCore.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="EsGroupBar.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Demo\TEsGroupBarDemo.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="EsVclCore">
+			<MSBuild Projects="EsVclCore\EsVclCore.dproj"/>
+		</Target>
+		<Target Name="EsVclCore:Clean">
+			<MSBuild Targets="Clean" Projects="EsVclCore\EsVclCore.dproj"/>
+		</Target>
+		<Target Name="EsVclCore:Make">
+			<MSBuild Targets="Make" Projects="EsVclCore\EsVclCore.dproj"/>
+		</Target>
+		<Target Name="EsGroupBar">
+			<MSBuild Projects="EsGroupBar.dproj"/>
+		</Target>
+		<Target Name="EsGroupBar:Clean">
+			<MSBuild Targets="Clean" Projects="EsGroupBar.dproj"/>
+		</Target>
+		<Target Name="EsGroupBar:Make">
+			<MSBuild Targets="Make" Projects="EsGroupBar.dproj"/>
+		</Target>
+		<Target Name="TEsGroupBarDemo">
+			<MSBuild Projects="Demo\TEsGroupBarDemo.dproj"/>
+		</Target>
+		<Target Name="TEsGroupBarDemo:Clean">
+			<MSBuild Targets="Clean" Projects="Demo\TEsGroupBarDemo.dproj"/>
+		</Target>
+		<Target Name="TEsGroupBarDemo:Make">
+			<MSBuild Targets="Make" Projects="Demo\TEsGroupBarDemo.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="EsVclCore;EsGroupBar;TEsGroupBarDemo"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="EsVclCore:Clean;EsGroupBar:Clean;TEsGroupBarDemo:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="EsVclCore:Make;EsGroupBar:Make;TEsGroupBarDemo:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

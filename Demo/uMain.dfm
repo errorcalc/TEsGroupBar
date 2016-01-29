@@ -24,7 +24,6 @@ object MainForm: TMainForm
     Align = alLeft
     Caption = 'EsGroupBar1'
     TabOrder = 0
-    ExplicitHeight = 467
     object grSelectStyle: TEsGroup
       ShowItemSelection = True
       Caption = 'Select Style'
@@ -111,7 +110,6 @@ object MainForm: TMainForm
       'Events:')
     ScrollBars = ssVertical
     TabOrder = 1
-    ExplicitHeight = 461
   end
   object StaticText1: TStaticText
     Left = 0
@@ -141,7 +139,6 @@ object MainForm: TMainForm
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 3
-    ExplicitHeight = 467
     object btnAddGroup: TButton
       Left = 6
       Top = 6
@@ -326,7 +323,7 @@ object MainForm: TMainForm
     Left = 464
     Top = 104
     Bitmap = {
-      494C0101050008001C0110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010105000800340110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000183948C02B6581FF2B6581FF2B65
       81FF2B6581FF2B6581FF2B6581FF2B6581FF2B6581FF2B6581FF2B6581FF1021
