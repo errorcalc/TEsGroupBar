@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'TEsGroupBar demo project'
-  ClientHeight = 520
+  ClientHeight = 604
   ClientWidth = 698
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,11 +14,19 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 209
+    Top = 20
+    Width = 10
+    Height = 584
+    AutoSnap = False
+    ResizeStyle = rsUpdate
+  end
   object EsGroupBar1: TEsGroupBar
     Left = 0
     Top = 20
     Width = 209
-    Height = 500
+    Height = 584
     AutoHideEmptyGroup = True
     HighlightSelectedGroup = True
     Align = alLeft
@@ -48,6 +56,10 @@ object MainForm: TMainForm
         item
           Caption = 'ModernBlue'
           OnClick = EsGroup3Items4Click
+        end
+        item
+          Caption = 'Seattle'
+          OnClick = grSelectStyleItems5Click
         end>
     end
     object EsGroup1: TEsGroup
@@ -101,10 +113,10 @@ object MainForm: TMainForm
   end
   object Memo1: TMemo
     AlignWithMargins = True
-    Left = 510
+    Left = 568
     Top = 23
-    Width = 185
-    Height = 494
+    Width = 127
+    Height = 578
     Align = alRight
     Lines.Strings = (
       'Events:')
@@ -132,10 +144,10 @@ object MainForm: TMainForm
     Visible = False
   end
   object Panel1: TPanel
-    Left = 209
+    Left = 219
     Top = 20
-    Width = 240
-    Height = 500
+    Width = 238
+    Height = 584
     Align = alLeft
     BevelOuter = bvNone
     TabOrder = 3
@@ -323,7 +335,7 @@ object MainForm: TMainForm
     Left = 464
     Top = 104
     Bitmap = {
-      494C010105000800340110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101050008004C0110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000183948C02B6581FF2B6581FF2B65
       81FF2B6581FF2B6581FF2B6581FF2B6581FF2B6581FF2B6581FF2B6581FF1021

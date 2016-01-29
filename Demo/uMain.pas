@@ -87,6 +87,7 @@ type
     chAccuracyItemHitTest: TCheckBox;
     chTextGlow: TCheckBox;
     chUnderlineHotItem: TCheckBox;
+    Splitter1: TSplitter;
     procedure Action1Execute(Sender: TObject);
     procedure btnAddGroupClick(Sender: TObject);
     procedure btnOpenAllClick(Sender: TObject);
@@ -110,6 +111,7 @@ type
     procedure chAccuracyItemHitTestClick(Sender: TObject);
     procedure chTextGlowClick(Sender: TObject);
     procedure chUnderlineHotItemClick(Sender: TObject);
+    procedure grSelectStyleItems5Click(Sender: TObject);
   private
     { Private declarations }
     procedure SetStyle(Index: Integer);
@@ -273,6 +275,11 @@ begin
  Memo1.Lines.Add(TEsGroupItem(Sender).Caption + ' Clicked');
 end;
 
+procedure TMainForm.grSelectStyleItems5Click(Sender: TObject);
+begin
+  SetStyle(5);
+end;
+
 procedure TMainForm.SetStyle(Index: Integer);
 begin
   case Index of
@@ -300,6 +307,11 @@ begin
     begin
       {$ifdef SupportStyles}TStyleManager.TrySetStyle({$ifdef Win10Styles}'Windows10 Blue'{$else}'Metropolis UI Blue'{$endif});{$endif}
       EsGroupBar1.GroupStyle.LoadStyleFromResource(hInstance, 'ModernBlue', RT_RCDATA);
+    end;
+    5:
+    begin
+      {$ifdef SupportStyles}TStyleManager.SetStyle('Windows');{$endif}
+      EsGroupBar1.GroupStyle.LoadStyleFromResource(hInstance, 'Seattle', RT_RCDATA);
     end;
   end;
 

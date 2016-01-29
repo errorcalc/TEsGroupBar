@@ -4,8 +4,7 @@ program TEsGroupBarDemo;
 
 uses
   Forms,
-  uMain in 'uMain.pas' {MainForm},
-  Es.Vcl.GroupBar in '..\Source\Es.Vcl.GroupBar.pas';
+  uMain in 'uMain.pas' {MainForm};
 
 {$R *.res}
 

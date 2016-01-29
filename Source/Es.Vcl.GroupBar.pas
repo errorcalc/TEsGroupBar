@@ -975,7 +975,7 @@ begin
         GroupList[I].CalcHeight;
         GroupList[I].Invalidate;
       end;
-      //UpdateBounds;
+      UpdateBounds;
     end else
       for I := 0 to GroupList.Count - 1 do
         GroupList[I].Invalidate;
