@@ -10,6 +10,9 @@ You can purchase a license for commercial use.
 
 RUS/ENG
 
+*** You can help, if you send me where you are using the component and attach a screenshot example of use ***
+*** Вы можете помочь, если вы пришлете мне, где вы используете компонент и приложите скриншот с примером использования ***
+
 [ENG]
 ====================================
 TEsGroupBar - This sidebar is similar to the panel conductor XP, and allows the installation of any skin, In addition there is a support mode when one of the items selected.
