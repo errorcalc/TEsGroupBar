@@ -30,7 +30,7 @@ type
   // Button style
   TEsGroupButtonState = (bsNormalOpen, bsNormalOpenHot, bsNormalClose, bsNormalCloseHot,
     bsSelectedOpen, bsSelectedOpenHot, bsSelectedClose, bsSelectedCloseHot);
-  TEsGroupButtonStyle = class(TStyleNinePath)
+  TEsGroupButtonStyle = class(TStyleNinePatch)
   private
     FWidth: Integer;
     FHeight: Integer;
@@ -65,7 +65,7 @@ type
 
   // GroupSelectStyle
   TEsGroupSelectState = (gssNormal, gssHot, gssDown);//, gssSelected);
-  TEsGroupSelectStyle = class(TStyleNinePath)
+  TEsGroupSelectStyle = class(TStyleNinePatch)
   private
     FHeight: Cardinal;
     FShowHotSelector: Boolean;
@@ -96,7 +96,7 @@ type
 
   // ItemSeparatorStyle
   TEsItemSeparatorState = (issNormal, issSelected);
-  TEsGroupItemSeparatorStyle = class(TStyleNinePath)
+  TEsGroupItemSeparatorStyle = class(TStyleNinePatch)
   private
     FHeight: Cardinal;
     function GetImage(const Index: Integer): TPngImage;
@@ -121,7 +121,7 @@ type
 
   // GroupBackgroundStyle
   TEsGroupBackgroundState = (gbsNormal, gbsSelected);
-  TEsGroupBackgroundStyle = class(TStyleNinePath)
+  TEsGroupBackgroundStyle = class(TStyleNinePatch)
   private
     function GetImage(const Index: Integer): TPngImage;
     function GetOverlay(const Index: Integer): TPngImage;
