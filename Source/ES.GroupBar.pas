@@ -383,7 +383,7 @@ type
   end;
 
   TEsGroup = class(TEsCustomControl)
-  type
+  private type
     TButtonState = (bsNormal, bsDown, bsHot);
   private
     // Internal

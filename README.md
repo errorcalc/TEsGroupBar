@@ -4,6 +4,7 @@
 
 Version 1.0
 Support Delphi 2010 - Delphi Berlin (DX10.1)
+Now: C++Builder support!
 
 License: 
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
