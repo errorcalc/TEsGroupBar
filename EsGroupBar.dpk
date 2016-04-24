@@ -37,8 +37,9 @@ requires
   vclactnband;
 
 contains
-  Es.Vcl.GroupBar in 'Source\Es.Vcl.GroupBar.pas',
+  ES.GroupBar in 'Source\ES.GroupBar.pas',
   EsGroupBarRegister in 'Source\EsGroupBarRegister.pas',
-  Es.Vcl.GroupBarEditor in 'Source\Es.Vcl.GroupBarEditor.pas';
+  ES.GroupBarEditor in 'Source\ES.GroupBarEditor.pas';
 
 end.
+

@@ -1,10 +1,11 @@
 *** ErrorSoft(c) 2015-2016 ***
+*** TEsGroupBar Version 1.0 ***
 
 License: 
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
 You can purchase a license for commercial use.
 
-Support Delphi 2010 - Delphi Seattle (DX10)
+Support Delphi 2010 - Delphi Berlin (DX10.1)
 
 ENG/RUS
 

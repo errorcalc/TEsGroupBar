@@ -24,7 +24,7 @@ interface
 {$I 'EsGroupBar.inc'}
 
 uses
-  Es.Vcl.GroupBar, Classes, DesignIntf, Es.Vcl.GroupBarEditor, Es.Vcl.CfxClasses, PngImage;
+  Es.GroupBar, Classes, DesignIntf, Es.GroupBarEditor, Es.CfxClasses, PngImage;
 
 procedure Register;
 

@@ -17,11 +17,11 @@
 {            ООО "Быстрые Информационные Системы", manager@bis3.ru             }
 {   Пишите на errorsoft@mail.ru для разработки компонента (VCL/FMX) на заказ   }
 {******************************************************************************}
-unit Es.Vcl.GroupBarEditor;
+unit ES.GroupBarEditor;
 
 interface
 uses
-  DesignEditors, DesignMenus, DesignIntf, Classes, Es.Vcl.GroupBar, StdCtrls, PicEdit;
+  DesignEditors, DesignMenus, DesignIntf, Classes, Es.GroupBar, StdCtrls, PicEdit;
 
 type
   TEsGroupBarEditor = class(TComponentEditor)
@@ -53,7 +53,7 @@ type
 implementation
 
 uses
-  Dialogs, ColnEdit, Es.Vcl.Utils, Graphics, PngImage, Es.Vcl.CfxClasses,
+  Dialogs, ColnEdit, Es.Utils, Graphics, PngImage, Es.CfxClasses,
   Controls;
 
 { TEsGroupBarEditorPopup }

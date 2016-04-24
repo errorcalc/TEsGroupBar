@@ -17,13 +17,13 @@
 {            ООО "Быстрые Информационные Системы", manager@bis3.ru             }
 {   Пишите на errorsoft@mail.ru для разработки компонента (VCL/FMX) на заказ   }
 {******************************************************************************}
-unit Es.Vcl.GroupBar;
+unit ES.GroupBar;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Generics.Collections,
-  Es.Vcl.BaseControls, Es.Vcl.CfxClasses, Es.Vcl.ExGraphics, PngImage, Dialogs, ImgList, ActnList
+  Es.BaseControls, Es.CfxClasses, Es.ExGraphics, PngImage, Dialogs, ImgList, ActnList
   {$if CompilerVersion >= 23}, UITypes{$ifend};
 
 type
@@ -149,6 +149,8 @@ type
   // TEsGroupStyle
   TEsGroupStyle = class(TPersistent)
   private
+    // ScaleM, ScaleD: Integer;
+    // Scalable: Boolean;
     FControl: TControl;
     FOnChange: TChangeOptionsEvent;
     IsUpdateStyle: Boolean;
@@ -214,6 +216,8 @@ type
     procedure SetDisableInactiveGroup(const Value: Boolean);
     procedure SetTextGlow(const Value: Boolean);
     //
+    // procedure Scale;
+    //
   protected
     procedure Change(Rebild: Boolean);
     procedure SimpleChange(Sender: TObject);
@@ -225,6 +229,8 @@ type
     destructor Destroy; override;
     procedure AssignDefaultImages;
     procedure AssignHeaderFont(Font: TFont);
+    //
+    // procedure SetScale(M, D: Integer);
     // Styles
     procedure LoadStyleFormStream(Stream: TStream);
     procedure LoadStyleFormFile(FileName: string);
@@ -443,6 +449,7 @@ type
     procedure Resize; override;
     procedure SetParent(AParent: TWinControl); override;
     procedure Paint; override;// Options-test
+    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
     // mouse events
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
     procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
@@ -551,12 +558,14 @@ type
   protected
     procedure Loaded; override;
     procedure PaintWindow(DC: HDC); override;
+    procedure ChangeScale(M: Integer; D: Integer); override;
     //
     procedure SetChildOrder(Child: TComponent; Order: Integer); override;
     //
     procedure CreateWnd; override;
     procedure Resize; override;
     procedure CreateParams(var Params: TCreateParams); override;
+    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
     procedure UpdateBounds;
     //
     procedure ChangeOptons(Sender: TObject; Rebild: Boolean);
@@ -655,7 +664,7 @@ implementation
 
 
 uses
-  Es.Vcl.Utils
+  Es.Utils
 {$if CompilerVersion >= 23}
   ,Themes
 {$ifend}
@@ -800,6 +809,19 @@ procedure TEsGroupBar.Loaded;
 begin
   inherited;
   UpdateBounds;
+end;
+
+procedure TEsGroupBar.Notification(AComponent: TComponent; Operation: TOperation);
+var
+  I: Integer;
+begin
+  Inherited;
+  if (AComponent = FImages) and (Operation = opRemove) then
+  begin
+    FImages := nil;
+    for I := 0 to GroupList.Count - 1 do
+      GroupList[I].Invalidate;
+  end;
 end;
 
 procedure TEsGroupBar.OpenAllGroups;
@@ -980,6 +1002,12 @@ begin
       for I := 0 to GroupList.Count - 1 do
         GroupList[I].Invalidate;
   end;
+end;
+
+procedure TEsGroupBar.ChangeScale(M, D: Integer);
+begin
+  inherited;
+  // GroupStyle.SetScale(M, D);
 end;
 
 procedure TEsGroupBar.CloseAllGroups;
@@ -1199,6 +1227,16 @@ begin
   end;
 
   Invalidate;
+end;
+
+procedure TEsGroup.Notification(AComponent: TComponent; Operation: TOperation);
+begin
+  Inherited;
+  if (AComponent = FImages) and (Operation = opRemove) then
+  begin
+    FImages := nil;
+    Invalidate;
+  end;
 end;
 
 procedure TEsGroup.Open;
@@ -2123,6 +2161,8 @@ begin
   FSelectStyle.AssignDefaultStyle;
   FButtonStyle.AssignDefaultStyle;
   AssignDefaultProperties;
+//  if Scalable then
+//    Scale;
   Change(True);
 end;
 
@@ -2135,6 +2175,8 @@ begin
   finally
     IsUpdateStyle := False;
   end;
+//  if Scalable then
+//    Scale;
   Change(True);
 end;
 
@@ -2147,6 +2189,8 @@ begin
   finally
     IsUpdateStyle := False;
   end;
+//  if Scalable then
+//    Scale;
   Change(True);
 end;
 
@@ -2159,6 +2203,8 @@ begin
   finally
     IsUpdateStyle := False;
   end;
+//  if Scalable then
+//    Scale;
   Change(True);
 end;
 
@@ -2192,6 +2238,12 @@ begin
   FShowSeparator := False;
   FDisableInactiveGroup := False;
 end;
+
+//procedure TEsGroupStyle.Scale;
+//begin
+//  // FHeaderHeight := MulDiv(FHeaderHeight, ScaleM, ScaleD);
+//  FItemHeight := MulDiv(FItemHeight, ScaleM, ScaleD);
+//end;
 
 procedure TEsGroupStyle.SetAccuracyItemHitTest(const Value: Boolean);
 begin
@@ -2283,7 +2335,11 @@ procedure TEsGroupStyle.SetItemHeight(const Value: Cardinal);
 begin
   if FItemHeight <> Value then
   begin
-    FItemHeight := Value;
+    //if Control = nil then
+      FItemHeight := Value;
+    //else
+     // FItemHeight := MulDiv(Value, Control., D);
+    //GroupStyle.ItemHeight := MulDiv(GroupStyle.ItemHeight, M, D);
     Change(True);
   end;
 end;
@@ -2328,6 +2384,18 @@ procedure TEsGroupStyle.SetItemSeparatorStyle(const Value: TEsGroupItemSeparator
 begin
   FItemSeparatorStyle.Assign(Value);
 end;
+
+//procedure TEsGroupStyle.SetScale(M, D: Integer);
+//begin
+//  if M <> D then
+//  begin
+//    ScaleM := M;
+//    ScaleD := D;
+//    Scalable := True;
+//    Scale;
+//  end else
+//    Scalable := False;
+//end;
 
 procedure TEsGroupStyle.SetSelectedItemColor(const Value: TColor);
 begin

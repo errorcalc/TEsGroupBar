@@ -61,11 +61,12 @@
 			<DCCReference Include="rtl.dcp"/>
 			<DCCReference Include="vcl.dcp"/>
 			<DCCReference Include="vclimg.dcp"/>
-			<DCCReference Include="Source\ES.Vcl.BaseControls.pas"/>
-			<DCCReference Include="Source\ES.Vcl.CfxClasses.pas"/>
-			<DCCReference Include="Source\ES.Vcl.ExGraphics.pas"/>
-			<DCCReference Include="Source\ES.Vcl.Utils.pas"/>
-			<DCCReference Include="Source\EsVclFix.pas"/>
+			<DCCReference Include="Source\ES.BaseControls.pas"/>
+			<DCCReference Include="Source\ES.CfxClasses.pas"/>
+			<DCCReference Include="Source\ES.ExGraphics.pas"/>
+			<DCCReference Include="Source\ES.Utils.pas"/>
+			<DCCReference Include="Source\ES.VclFix.pas"/>
+			<DCCReference Include="Source\ES.StyleHooks.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -137,15 +138,15 @@
 							<Overwrite>true</Overwrite>
 						</Platform>
 					</DeployFile>
-					<DeployFile Class="ProjectOutput" LocalName="..\..\..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\EsVclCore.bpl" Configuration="Debug">
-						<Platform Name="Win32">
-							<RemoteName>EsVclCore.bpl</RemoteName>
-							<Overwrite>true</Overwrite>
-						</Platform>
-					</DeployFile>
 					<DeployFile Class="DebugSymbols" LocalName="..\..\..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\EsVclCore.rsm" Configuration="Debug">
 						<Platform Name="Win32">
 							<RemoteName>EsVclCore.rsm</RemoteName>
+							<Overwrite>true</Overwrite>
+						</Platform>
+					</DeployFile>
+					<DeployFile Class="ProjectOutput" LocalName="..\..\..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\EsVclCore.bpl" Configuration="Debug">
+						<Platform Name="Win32">
+							<RemoteName>EsVclCore.bpl</RemoteName>
 							<Overwrite>true</Overwrite>
 						</Platform>
 					</DeployFile>
