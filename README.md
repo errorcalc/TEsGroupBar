@@ -11,13 +11,15 @@ Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public L
 You can purchase a license for commercial use.
 
 [ENG]
-TEsGroupBar - This sidebar is similar to the panel conductor XP, and allows the installation of any skin, In addition there is a support mode when one of the items selected.
+TEsGroupBar - This sidebar is similar to the panel conductor Windows XP, and allows the set any skin (nine-path png images), in addition there is a support of a few modes.
 
-The component is free for noncommercial use, you must specify in the About or elsewhere about using this component, preferably with reference to the repository. You can purchase a license for commercial use, $30, writing to errorsoft@mail.ru or Enter256@yandex.ru.
+The component is OpenSource, free for noncommercial use, must specify in the About or elsewhere about using this component, preferably with reference to the repository.
+
+You can purchase a license for commercial use, $30, writing to Enter256@yandex.ru.
+
 After purchasing a license, you also get a year of free updates and technical support.
 
-Сan add need features for you.
-Can manufacturing of custom styles for you.
+Сan add need features or custom styles for you.
 
 [RUS]
 TEsGroupBar - Это боковая панель, подобная панели проводника в XP, позволяющая установку любого скина.
