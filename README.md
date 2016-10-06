@@ -22,6 +22,8 @@ After purchasing a license, you also get a year of free updates and technical su
 
 Сan add need features or custom styles for you.
 
+You can order develop vcl/fmx components, please submit requests to mail.
+
 [RUS]
 
 TEsGroupBar - Это боковая панель, подобная панели проводника в XP, позволяющая установку любого скина.
