@@ -49,7 +49,7 @@ object GroupOptions: TEsSerializer
   Obj.ItemSeparatorStyle.ImageMargins.Top = 2
   Obj.ItemSeparatorStyle.ImageMargins.Bottom = 2
   Obj.ItemSeparatorStyle.IsDefaultImages = False
-  Obj.ItemSeparatorStyle.ImageMode = smNormal
+  Obj.ItemSeparatorStyle.ImageMode = Normal
   Obj.ItemSeparatorStyle.Height = 5
   Obj.SelectStyle.ImageSelector.Data = {
     89504E470D0A1A0A0000000D4948445200000080000000100806000000DE5877

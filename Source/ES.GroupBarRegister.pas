@@ -17,11 +17,11 @@
 {            ООО "Быстрые Информационные Системы", manager@bis3.ru             }
 {   Пишите на errorsoft@mail.ru для разработки компонента (VCL/FMX) на заказ   }
 {******************************************************************************}
-unit EsGroupBarRegister;
+unit ES.GroupBarRegister;
 
 interface
 
-{$I 'EsGroupBar.inc'}
+{$I 'Es.GroupBar.inc'}
 
 uses
   Es.GroupBar, Classes, DesignIntf, Es.GroupBarEditor, Es.CfxClasses, PngImage;
@@ -38,7 +38,7 @@ begin
   RegisterComponentEditor(TEsGroupBar, TEsGroupBarEditor);
   RegisterComponentEditor(TEsGroup, TEsGroupEditor);
   {$ifdef FixLoadPng}
-  RegisterPropertyEditor(TypeInfo(TPngImage), TStyleNinePath, '', TEsPngPropertyFix);
+  RegisterPropertyEditor(TypeInfo(TPngImage), TStyleNinePatch, '', TEsPngPropertyFix);
   {$endif}
   UnlistPublishedProperty(TEsGroupBar, 'GroupOptions');
   UnlistPublishedProperty(TEsGroupStyle, 'GroupStyle');

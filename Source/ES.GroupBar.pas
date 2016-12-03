@@ -2,7 +2,7 @@
 {                            ErrorSoft(c) 2015-2016                            }
 {                                                                              }
 {             TEsGroupBar - the best skinnable groupbar for vcl                }
-{                                  Version 1.0                                 }
+{                                  Version 1.2                                 }
 {                                                                              }
 {                        Free for noncommercial use                            }
 {   You can purchase this, write on errorsoft@mail.ru or Enter256@yandex.ru    }
@@ -12,9 +12,8 @@
 {              errorsoft@protonmail.ch | habrahabr.ru/user/error1024           }
 {                                                                              }
 {     Designed for ООО "Быстрые Информационные Системы", manager@bis3.ru       }
+{    Разработан для ООО "Быстрые Информационные Системы", manager@bis3.ru      }
 {                                                                              }
-{                    Компонент был разработан для                              }
-{            ООО "Быстрые Информационные Системы", manager@bis3.ru             }
 {   Пишите на errorsoft@mail.ru для разработки компонента (VCL/FMX) на заказ   }
 {******************************************************************************}
 unit ES.GroupBar;
@@ -57,7 +56,8 @@ type
     property ImageSelectedOpenHot: TPngImage index bsSelectedOpenHot read GetOverlay write SetOverlay;
     property ImageSelectedClose: TPngImage index bsSelectedClose read GetOverlay write SetOverlay;
     property ImageSelectedCloseHot: TPngImage index bsSelectedCloseHot read GetOverlay write SetOverlay;
-    property IsDefaultStyle;
+    property IsDefaultImages;
+    property IsDefaultValues;
     property Width: Integer read FWidth write SetWidth stored IsStyleStored default 16;
     property Height: Integer read FHeight write SetHeight stored IsStyleStored default 16;
     property OffsetLeft: Cardinal read FOffsetLeft write SetOffsetLeft stored IsStyleStored default 1;
@@ -89,7 +89,8 @@ type
     property ImageDownSelector: TPngImage index gssDown read GetImage write SetImage;
     property ImageMargins;
     property ImageMode;
-    property IsDefaultStyle;
+    property IsDefaultImages;
+    property IsDefaultValues;
     property Height: Cardinal read FHeight write SetHeight stored IsStyleStored default 18;
     property ShowHotSelector: Boolean read FShowHotSelector write SetShowHotSelector default False;
   end;
@@ -114,8 +115,9 @@ type
     property ImageNormal: TPngImage index issNormal read GetImage write SetImage;
     property ImageSelected: TPngImage index issSelected read GetImage write SetImage;
     property ImageMargins;
-    property IsDefaultStyle;
-    property ImageMode default TStretchMode.smTile;
+    property IsDefaultImages;
+    property IsDefaultValues;
+    property ImageMode default TStretchMode.Tile;
     property Height: Cardinal read FHeight write SetHeight stored IsStyleStored default 1;
   end;
 
@@ -141,7 +143,8 @@ type
     property OverlaySelected: TPngImage index gbsSelected read GetOverlay write SetOverlay;
     property ImageMargins;
     property OverlayMargins;
-    property IsDefaultStyle;
+    property IsDefaultImages;
+    property IsDefaultValues;
   end;
 
   TChangeOptionsEvent = procedure (Sender: TObject; Rebuld: Boolean) of object;
@@ -662,12 +665,12 @@ implementation
 
 {$R 'DefaultStyle/EsGroupBarCfx.res'}
 
-
 uses
   Es.Utils
 {$if CompilerVersion >= 23}
   ,Themes
 {$ifend}
+  ,System.Types
 ;
 { TEsGroupBar }
 
@@ -1849,7 +1852,7 @@ begin
   inherited;
   ImageMargins.SetBounds(4, 21, 4, 1);
   OverlayMargins.SetBounds(0, 0, 0, 0);
-  OverlayAlign := TImageAlign.iaTop;
+  OverlayAlign := TImageAlign.Top;
 end;
 
 procedure TEsGroupBackgroundStyle.Draw(Canvas: TCanvas; Rect: TRect; State: TEsGroupBackgroundState; Alpha: Byte);
@@ -1892,7 +1895,7 @@ end;
 procedure TEsGroupButtonStyle.AssignDefaultValues;
 begin
   inherited;
-  OverlayAlign := TImageAlign.iaCenter;
+  OverlayAlign := TImageAlign.Center;
   FWidth := 16;
   FHeight := 16;
   FOffsetLeft := 1;
@@ -1964,7 +1967,7 @@ begin
   ImageMargins.SetBounds(2, 2, 2, 2);
   FHeight := 18;
   FShowHotSelector := False;
-  ImageMode := smNormal;
+  ImageMode := TStretchMode.Normal;
 end;
 
 constructor TEsGroupSelectStyle.Create;
@@ -2032,7 +2035,7 @@ procedure TEsGroupItemSeparatorStyle.AssignDefaultValues;
 begin
   inherited;
   ImageMargins.SetBounds(0, 0, 0, 0);
-  ImageMode := TStretchMode.smTile;// drawing style or strech mode
+  ImageMode := TStretchMode.Tile;// drawing style or strech mode
   FHeight := 1;
 end;
 

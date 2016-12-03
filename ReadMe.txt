@@ -1,5 +1,5 @@
 *** ErrorSoft(c) 2015-2016 ***
-*** TEsGroupBar Version 1.0 ***
+*** TEsGroupBar Version 1.6 ***
 
 License: 
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
@@ -23,11 +23,7 @@ Can manufacturing of custom styles for you.
 
 Installation:
 ----- Delphi2010-XE1 -----
-1) Add "EsVclCore\Source" to search path (Tools->Options->Delphi Options->Library->Library path)
-2) Compile EsVclCore (Build in the Project Manager)
-3) Add "Source" to search path (Tools->Options->Delphi Options->Library->Library path)
-4) Install EsGroupBar
-5) Open a demo and make sure that the component is installed correctly
+Please download 1.0 version.
 
 ----- Delphi XE2-Higher -----
 ! Steps 1-4 should be performed only if you have not installed FreeEsVCLComponents.
@@ -64,11 +60,7 @@ TEsGroupBar - Это боковая панель, подобная панели проводника в XP, позволяющая у
 
 Установка:
 ----- Delphi2010-XE1 -----
-1) Прописать в Path путь на "EsVclCore\Source" (Tools->Options->Delphi Options->Library->Library path)
-2) Скомпилировать EsVclCore (Build в Project Manager)
-3) Прописать в Path путь на "Source" (Tools->Options->Delphi Options->Library->Library path)
-4) Установить EsGroupBar
-5) Открыть демку и убедиться, что компонент установлен корректно
+Пожалуйста скачайте версию 1.0
 
 ----- Delphi XE2-Higher -----
 ! Шаги 1-4 необходимо выполнять только если вы не устанавливали FreeEsVCLComponents.

@@ -2,7 +2,7 @@
 {                            ErrorSoft(c) 2015-2016                            }
 {                                                                              }
 {             TEsGroupBar - the best skinnable groupbar for vcl                }
-{                                  Version 1.0                                 }
+{                                  Version 1.6                                 }
 {                                                                              }
 {                        Free for noncommercial use                            }
 {   You can purchase this, write on errorsoft@mail.ru or Enter256@yandex.ru    }
@@ -53,8 +53,7 @@ type
 implementation
 
 uses
-  Dialogs, ColnEdit, Es.Utils, Graphics, PngImage, Es.CfxClasses,
-  Controls;
+  Dialogs, ColnEdit, Es.Utils, Graphics, PngImage, Es.CfxClasses, Controls;
 
 { TEsGroupBarEditorPopup }
 

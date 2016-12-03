@@ -50,7 +50,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ImgList, StdCtrls, ActnList, ES.BaseControls, Es.GroupBar
+  Dialogs, ImgList, StdCtrls, ActnList, ES.BaseControls, ES.GroupBar
   {$ifdef VER_XE8_UP},System.ImageList{$endif} {$ifdef VER_XE3_UP},System.Actions{$endif}
   , ExtCtrls, ToolWin, ComCtrls;
 
@@ -134,7 +134,7 @@ uses
 
 procedure TMainForm.Action1Execute(Sender: TObject);
 begin
- Memo1.Lines.Add(TAction(Sender).Caption + ' Clicked');
+  Memo1.Lines.Add(TAction(Sender).Caption + ' Clicked');
 end;
 
 procedure TMainForm.btnAddGroupClick(Sender: TObject);

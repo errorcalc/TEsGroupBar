@@ -38,7 +38,7 @@ requires
 
 contains
   ES.GroupBar in 'Source\ES.GroupBar.pas',
-  EsGroupBarRegister in 'Source\EsGroupBarRegister.pas',
+  ES.GroupBarRegister in 'Source\ES.GroupBarRegister.pas',
   ES.GroupBarEditor in 'Source\ES.GroupBarEditor.pas';
 
 end.
