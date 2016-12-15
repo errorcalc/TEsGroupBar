@@ -1,0 +1,15 @@
+{
+  "id": "{D8465F79-CA61-471E-9FBF-16535A1523F3}",
+  "name": "TEsGroupBar",
+  "license_type": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License, Commercial license",
+  "license_file": "License.txt",
+  "platforms": "Win32;Win64",
+  "compiler_min": 23,
+  "dependencies":
+   [
+     {
+       "id": "{426A8E36-0A51-47F5-8099-2727517BAC77}",
+       "version_min": "2.1.1"
+     }
+   ]
+}
