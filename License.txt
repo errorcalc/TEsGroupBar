@@ -5,8 +5,10 @@ This project has two licenses, you can select one of two license:
 That means that you can use the product for non commercial purposes.
 (exaple: Personal use, Study, Open Source,...)
 
-2) ErrorSoft TEsGroupBar Commercial license.
+2) ErrorSoft TEsGroupBar Named Commercial license.
 Copyright (c) 2015-2016 Peter Sokolov, ErrorSoft(c)
+
+Purchase information: Enter256@yandex.ru
 ---
 This license allows the use of the product for commercial purposes.
 But subject to the following conditions:
