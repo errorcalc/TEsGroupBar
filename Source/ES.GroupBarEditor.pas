@@ -21,7 +21,8 @@ unit ES.GroupBarEditor;
 
 interface
 uses
-  DesignEditors, DesignMenus, DesignIntf, Classes, Es.GroupBar, StdCtrls, PicEdit;
+  DesignEditors, DesignMenus, DesignIntf, Classes, Es.GroupBar, StdCtrls, PicEdit,
+  TypInfo, Types, Es.ExGraphics;
 
 type
   TEsGroupBarEditor = class(TComponentEditor)
@@ -53,7 +54,8 @@ type
 implementation
 
 uses
-  Dialogs, ColnEdit, Es.Utils, Graphics, PngImage, Es.CfxClasses, Controls;
+  Dialogs, ColnEdit, Es.Utils, Graphics, PngImage, Es.CfxClasses, Controls,
+  SysUtils, DesignConst;
 
 { TEsGroupBarEditorPopup }
 
@@ -217,13 +219,44 @@ begin
 
 end;
 
-{ TEsGroupImagePropertyEditor }
 
+{TEsPngPropertyFix}
+
+// AlphaControls/alphaskins is bad.
+// I has too much head pain, because of them!
+// Alpha controls COMPLETLY BREAK DOWN STANDART PNG LOADER.
 procedure TEsPngPropertyFix.Edit;
+var
+  PictureEditor: TPictureEditor;
+  Png: TPngImage;
+
 begin
-  TPicture.RegisterFileFormat('PNG', 'ErrorSoft fix PNG loader', TFixPngImage);
-  inherited;
-  TPicture.UnregisterGraphicClass(TFixPngImage);
+  PictureEditor := TPictureEditor.Create(nil);
+  try
+    PictureEditor.GraphicClass := TGraphicClass(GetTypeData(GetPropType)^.ClassType);
+    PictureEditor.Picture.Graphic := TGraphic(Pointer(GetOrdValue));
+
+    if PictureEditor.Execute then
+      if (PictureEditor.Picture.Graphic = nil) or
+         (PictureEditor.Picture.Graphic is PictureEditor.GraphicClass) then
+        SetOrdValue(LongInt(PictureEditor.Picture.Graphic))
+      else
+        if (PictureEditor.Picture.Graphic is TBitmap) and
+           PictureEditor.Picture.Graphic.ClassNameIs('TPNGGraphic') then
+        begin
+          Png := TPngImage.Create;
+          try
+            BitmapAssignToPngImage(Png, TBitmap(PictureEditor.Picture.Graphic), False);
+            SetOrdValue(LongInt(Png));
+          finally
+            Png.Free;
+          end;
+        end
+        else
+          raise Exception.CreateRes(@SInvalidFormat);
+  finally
+    PictureEditor.Free;
+  end;
 end;
 
 end.
