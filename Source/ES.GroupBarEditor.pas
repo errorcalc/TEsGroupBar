@@ -1,5 +1,5 @@
 {******************************************************************************}
-{                            ErrorSoft(c) 2015-2016                            }
+{                            ErrorSoft(c) 2015-2020                            }
 {                                                                              }
 {             TEsGroupBar - the best skinnable groupbar for vcl                }
 {                                  Version 1.6                                 }
